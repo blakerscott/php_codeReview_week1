@@ -19,13 +19,13 @@
 
 
 
-        return $app['twig']->render('tasks.html.twig', array('tasks' => Contact::getAll()));
+        return $app['twig']->render('home.html.twig', array('contacts' => Contact::getAll()));
     });
 
-    $app->post("/tasks", function() use ($app) {
+    $app->post("/newcontact", function() use ($app) {
         $task = new Contact($_POST['description']);
         $task->save();
-        return $app['twig']->render('create_task.html.twig', array('newcontact' => $contact));
+        return $app['twig']->render('new_contact.html.twig', array('newcontact' => $contact));
     });
 
 

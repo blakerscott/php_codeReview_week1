@@ -1,33 +1,41 @@
 <html>
 <head>
-    <title>To Do List</title>
+    <title>Address Book</title>
 </head>
-<body>
-    <h1>To Do List</h1>
+  <body>
+    <div class="container">
+        <div class="jumbotron">
+          <h1>Address Book</h1>
+        </div>
+    <div class="container">
+      {% if contacts is not empty %}
+          <p>Here are all your Contacts:</p>
+          <ul>
+              {% for contact in contacts %}
+                  <li>{{ contact.getName }}</li>
+                  <li>{{ contact.getPhoneNumber }}</li>
+                  <li>{{ contact.getAddress }}</li>
+              {% endfor %}
+          </ul>
+      {% endif %}
+    </div>
 
-    {% if contacts is not empty %}
-        <p>Here are all your Contacts:</p>
-        <ul>
-            {% for contact in contacts %}
-                <li>{{ contact.getName }}</li>
-                <li>{{ contact.getPhoneNumber }}</li>
-                <li>{{ contact.getAddress }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <div class="container">
+      <form action='/newcontact' method='post'>
+          <label for='name'>Add Name</label>
+          <input id='name' name='name' type='text'>
+          <label for='phonenumber'>Add phone number</label>
+          <input id='phonenumber' name='phonenumber' type='number'>
+          <label for='address'>Add address</label>
+          <input id='address' name='address' type='text'>
 
-    <form action='/newcontact' method='post'>
-        <label for='name'>Add Name</label>
-        <input id='name' name='name' type='text'>
-        <label for='phonenumber'>Add phone number</label>
-        <input id='phonenumber' name='phonenumber' type='number'>
-        <label for='address'>Add address</label>
-        <input id='address' name='address' type='text'>
+          <button type='submit'>Add contact</button>
+      </form>
+      <form action='/delete_all_contacts' method='post'>
+          <button type='submit'>Delete all Contacts</button>
+      </form>
+    </div>
+    </div>
 
-        <button type='submit'>Add contact</button>
-    </form>
-    <form action='/delete_all_contacts' method='post'>
-        <button type='submit'>Delete all Contacts</button>
-    </form>
-</body>
+  </body>
 </html>

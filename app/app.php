@@ -23,8 +23,8 @@
     });
 
     $app->post("/newcontact", function() use ($app) {
-        $task = new Contact($_POST['description']);
-        $task->save();
+        $contact = new Contact($_POST['name'],$_POST['phonenumber'],$_POST['address']);
+        $contact->save();
         return $app['twig']->render('new_contact.html.twig', array('newcontact' => $contact));
     });
 

@@ -1,9 +1,9 @@
 <?php
-class Task
+class Contact
 {
     private $name;
-    private $phoneNumber
-    private $address
+    private $phoneNumber;
+    private $address;
 
     function __construct($name, $phoneNumber, $address)
     {
@@ -27,7 +27,7 @@ class Task
         $this->phoneNumber = $new_phoneNumber;
     }
 
-    function getphoneNumber()
+    function getPhoneNumber()
     {
         return $this->phoneNumber;
     }
@@ -40,6 +40,11 @@ class Task
     function getAddress()
     {
         return $this->address;
+    }
+
+    function save()
+    {
+        array_push($_SESSION['list_of_contacts'], $this);
     }
 
     static function getAll()
